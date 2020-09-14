@@ -1,12 +1,28 @@
 <template>
-  <div class="tooltip">
-    <strong>{{ num }}</strong>
-    <p>{{ text }}</p>
-  </div>
+  <transition name="fade-tooltip">
+    <div v-if="show" class="tooltip">
+      <strong>{{ num }}</strong>
+      <p>{{ text }}</p>
+    </div>
+  </transition>
 </template>
 
 <script>
 export default {
+  data() {
+    return {
+      show: false,
+      time: null,
+    };
+  },
+  mounted() {
+    this.time = setTimeout(() => {
+      this.show = !this.show;
+    }, 1500);
+  },
+  destroyed() {
+    clearTimeout(this.time);
+  },
   props: {
     num: {
       type: Number,
@@ -27,7 +43,7 @@ export default {
   justify-content: center;
   align-self: center;
   position: absolute;
-  bottom: -40px;
+  bottom: -45px;
   width: 180px;
   height: 70px;
   background: white;
@@ -46,6 +62,16 @@ export default {
   color: var(--Grayish-Blue);
   letter-spacing: 0.5px;
 }
+
+.fade-tooltip-enter-active,
+.fade-tooltip-active {
+  transition: opacity 2s;
+}
+.fade-tooltip-enter,
+.fade-tooltip-leave-to {
+  opacity: 0;
+}
+
 /* Tablet */
 @media (min-width: 768px) {
   .tooltip {

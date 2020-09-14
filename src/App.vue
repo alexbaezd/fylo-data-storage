@@ -5,7 +5,7 @@
         <Brand v-if="show" :icons="icons" />
       </transition>
       <transition name="fade">
-        <Progress v-if="show" :plan="storage" :used="use" />
+        <Progress v-if="show" :plan="storage" :used="used" />
       </transition>
     </main>
     <Attribution :author="author" :url="url" />
@@ -25,7 +25,7 @@ export default {
       author: "Alex Báez",
       url: "https://alexbaez.dev",
       storage: 1000, //change
-      use: 815, //change
+      used: 815, //change
       icons: [
         { id: 1, alt: "Icon Document", image: "icon-document.svg" },
         { id: 2, alt: "Icon Folder", image: "icon-folder.svg" },
@@ -57,7 +57,7 @@ export default {
 }
 body {
   background: url("./assets/bg-mobile.png") no-repeat center center fixed,
-    hsl(228, 56%, 26%);
+    var(--Dark-Blue);
   background-size: cover;
   color: white;
   font-family: "Raleway", sans-serif;
@@ -102,7 +102,7 @@ main {
 }
 @media (min-width: 1280px) {
   body {
-    background: url(./assets/bg-desktop.png) no-repeat center bottom fixed,
+    background: url("./assets/bg-desktop.png") no-repeat center bottom fixed,
       var(--Very-Dark-Blue);
     background-size: contain;
   }
